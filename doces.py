@@ -5,6 +5,7 @@ from ortools.linear_solver import pywraplp
 st.title("Otimização de Caixas para Doces")
 
 # Entradas do usuário
+
 st.header("Parâmetros de Entrada")
 qtd_doces = st.number_input("Quantidade de Doces", min_value=1, value=16502)
 qtd_max_caixas_tipo = st.number_input("Quantidade Máxima de Caixas por Tipo", min_value=1, value=1500)
