@@ -7,11 +7,11 @@ st.title("Otimização de Caixas para Doces")
 # Entradas do usuário
 
 st.header("Parâmetros de Entrada")
-qtd_doces = st.number_input("Quantidade de Doces", min_value=1, value=16502)
-qtd_max_caixas_tipo = st.number_input("Quantidade Máxima de Caixas por Tipo", min_value=1, value=1500)
+qtd_doces = st.number_input("Quantidade de Doces", min_value=1, value=500)
+
 qtd_max_caixas = st.number_input("Quantidade Máxima de Tipos de Caixas", min_value=1, value=1)
 tipo_caixas_input = st.text_input("Tipos de Caixas (separados por vírgula)", value="91, 84, 70, 64, 45, 35, 25")
-
+qtd_max_caixas_tipo = 1500
 # Processar a entrada dos tipos de caixas
 tipo_caixas = [int(caixa.strip()) for caixa in tipo_caixas_input.split(",")]
 
@@ -50,7 +50,7 @@ if st.button("Otimizar"):
         st.success("Solução ótima encontrada!")
         resultados = []
         for i in range(len(tipo_caixas)):
-            resultados.append(f"Quantidade de caixas do tipo {tipo_caixas[i]}: {int(x[i].solution_value())}")
+            resultados.append(f"Quantidade de caixas do tipo {tipo_caixas[i]}: {int(x[i].solution_value())} \n ")
         st.write("\n".join(resultados))
         st.write(f"Quantidade de espaços vazios: {int(z.solution_value())}")
     else:
