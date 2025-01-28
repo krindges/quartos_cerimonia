@@ -53,6 +53,6 @@ if st.button("Otimizar"):
             if int(x[i].solution_value())>0:
                 resultados.append(f"Quantidade de caixas de tamanho {tipo_caixas[i]}: {int(x[i].solution_value())} \n ")
         st.write("\n".join(resultados))
-        st.write(f"Quantidade de espaços vazios: {int(z.solution_value())}")
+        st.write(f"Espaços vazios: {int(z.solution_value())}")
     else:
         st.error("Não foi encontrada uma solução ótima.")
