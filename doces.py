@@ -50,7 +50,8 @@ if st.button("Otimizar"):
         st.success("Solução ótima encontrada!")
         resultados = []
         for i in range(len(tipo_caixas)):
-            resultados.append(f"Quantidade de caixas do tipo {tipo_caixas[i]}: {int(x[i].solution_value())} \n ")
+            if int(x[i].solution_value())>0:
+                resultados.append(f"Quantidade de caixas de tamanho {tipo_caixas[i]}: {int(x[i].solution_value())} \n ")
         st.write("\n".join(resultados))
         st.write(f"Quantidade de espaços vazios: {int(z.solution_value())}")
     else:
