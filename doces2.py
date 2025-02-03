@@ -10,7 +10,6 @@ tipo_caixas_input = st.text_input("Tipos de Caixas (separados por vírgula)", va
 custo_caixas_input = st.text_input("Custo de cada caixa (separados por vírgula)", value="5.00, 3.36, 4.60, 2.40, 1.90")
 
 qtd_max_caixas_tipo = 3000
-
 # Processar a entrada dos tipos de caixas e custos
 tipo_caixas = [int(caixa.strip()) for caixa in tipo_caixas_input.split(",")]
 custo_caixas = [float(custo.strip()) for custo in custo_caixas_input.split(",")]
