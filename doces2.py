@@ -26,16 +26,12 @@ if st.button("Otimizar"):
     # Definir as variáveis de decisão (quantidade de cada tipo de caixa)
     x = [solver.IntVar(0, qtd_max_caixas_tipo, f'x_{i}') for i in range(len(tipo_caixas))]
     y = [solver.BoolVar(f'y_{i}') for i in range(len(tipo_caixas))]
-    z = solver.IntVar(0, qtd_doces, 'z')  # Excesso de doces
 
     # Função objetivo: minimizar o custo total das caixas
     solver.Minimize(solver.Sum(custo_caixas[i] * x[i] for i in range(len(tipo_caixas))))
 
     # Restrição: o total de doces embalados deve ser maior ou igual à quantidade necessária
     solver.Add(solver.Sum(tipo_caixas[i] * x[i] for i in range(len(tipo_caixas))) >= qtd_doces)
-
-    # Garantir que o excesso de doces seja calculado corretamente
-    solver.Add(solver.Sum(tipo_caixas[i] * x[i] for i in range(len(tipo_caixas))) - qtd_doces == z)
 
     # Garantir que x[i] só tenha valor positivo se y[i] for 1
     for i in range(len(tipo_caixas)):
@@ -49,8 +45,8 @@ if st.button("Otimizar"):
 
     # Exibir resultados
     st.header("Resultados da Otimização")
-    if status == pywraplp.Solver.OPTIMAL:
-        st.success("Solução ótima encontrada!")
+    if status == pywraplp.Solver.OPTIMAL or status == pywraplp.Solver.FEASIBLE:
+        st.success("Solução encontrada!")
         custo_total = 0
         for i in range(len(tipo_caixas)):
             if int(x[i].solution_value()) > 0:
@@ -59,6 +55,5 @@ if st.button("Otimizar"):
                 custo_total += quantidade * custo_caixa
                 st.write(f"Quantidade de caixas de tamanho {tipo_caixas[i]}: {quantidade} (Custo: R${quantidade * custo_caixa:.2f})")
         st.write(f"Custo total das caixas: R${custo_total:.2f}")
-        st.write(f"Espaços vazios: {int(z.solution_value())}")
     else:
-        st.error("Não foi encontrada uma solução ótima.")
+        st.error("Não foi encontrada uma solução viável.")
