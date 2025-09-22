@@ -6,8 +6,8 @@ st.title("Otimização de Caixas para Doces")
 st.header("Parâmetros de Entrada")
 qtd_doces = st.number_input("Quantidade de Doces", min_value=1, value=500)
 qtd_max_caixas = st.number_input("Quantidade Máxima de Tipos de Caixas", min_value=1, value=2)
-tipo_caixas_input = st.text_input("Tipos de Caixas (separados por vírgula)", value="84, 70, 45, 35, 25")
-custo_caixas_input = st.text_input("Custo de cada caixa (separados por vírgula)", value="5.00, 3.36, 4.60, 2.40, 1.90")
+tipo_caixas_input = st.text_input("Tipos de Caixas (separados por vírgula)", value="25, 70, 91, 84, 45, 35")
+custo_caixas_input = st.text_input("Custo de cada caixa (separados por vírgula)", value="2.35, 3.36, 4.90, 5.05, 5.50, 2.90")
 
 qtd_max_caixas_tipo = 3000
 # Processar a entrada dos tipos de caixas e custos
