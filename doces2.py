@@ -88,11 +88,14 @@ if st.button("Otimizar"):
     st.header("Resultados da Minimização de espaço vazio")
     if status == pywraplp.Solver.OPTIMAL:
         st.success("Solução ótima encontrada!")
-        resultados = []
+        custo_total = 0
         for i in range(len(tipo_caixas)):
-            if int(x[i].solution_value())>0:
-                resultados.append(f"Quantidade de caixas de tamanho {tipo_caixas[i]}: {int(x[i].solution_value())} \n ")
-        st.write("\n".join(resultados))
+            if int(x[i].solution_value()) > 0:
+                quantidade = int(x[i].solution_value())
+                custo_caixa = custo_caixas[i]
+                custo_total += quantidade * custo_caixa
+                st.write(f"Quantidade de caixas de tamanho {tipo_caixas[i]}: {quantidade} (Custo: R${quantidade * custo_caixa:.2f})")
+        st.write(f"Custo total das caixas: R${custo_total:.2f}")
         st.write(f"Espaços vazios: {int(z.solution_value())}")
     else:
-        st.error("Não foi encontrada uma solução ótima.")    
+        st.error("Não foi encontrada uma solução ótima.")
