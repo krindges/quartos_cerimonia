@@ -43,7 +43,7 @@ if st.button("Otimizar"):
     status = solver.Solve()
 
     # Exibir resultados
-    st.header("Resultados da Minimização do custo")
+    st.header("Resultados da minimização do CUSTO")
     if status == pywraplp.Solver.OPTIMAL:
         st.success("Solução ótima encontrada!")
         custo_total = 0
@@ -85,7 +85,7 @@ if st.button("Otimizar"):
     status = solver.Solve()
 
     # Exibir resultados
-    st.header("Resultados da Minimização de espaço vazio")
+    st.header("Resultados da minimização de ESPAÇO VAZIO")
     if status == pywraplp.Solver.OPTIMAL:
         st.success("Solução ótima encontrada!")
         custo_total = 0
